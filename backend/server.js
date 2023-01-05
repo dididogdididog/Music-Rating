@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongodb from './src/mongodb';
 import routes from './src/routes';
+import path from "path";
 
 import db from './db'
 
