@@ -1,0 +1,8 @@
+{
+  "name": "Music-Rating",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dididogdididog/Music-Rating.git",
+  "author": "dididogdididog <81434389+dididogdididog@users.noreply.github.com>",
+  "license": "MIT"
+}
