@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import { Box, Link, Paper, Stack, Typography, Rating, Chip, Divider, Avatar, IconButton, TextField, Button, Tooltip, Snackbar } from '@mui/material';
+import { Box, Link, Paper, Stack, Typography, Rating, Chip, Divider, Avatar, IconButton, TextField, Button, Tooltip, Snackbar, ButtonBase } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { Container } from '@mui/system';
 import { Bard as Bar } from '../components/chartBar.js';
 
@@ -21,7 +21,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import db from '../db.js';
 import { useUser } from './useUser.js';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -108,6 +107,8 @@ const Album = () => {
 
   const [snackOpen, setSnackOpen] = useState(false);
   const [snackMessage, setSnackMessage] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAlbumData(albumId);
@@ -367,7 +368,9 @@ const Album = () => {
             }
           }}>
             {singerOtherAlbums.map(album => (<StyledPaper>
-              <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+              <ButtonBase onClick={() => { navigate(`/albums/${album.id}`) }}>
+                <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+              </ButtonBase>
               <Box sx={{ paddingTop: '10px', paddingLeft: '5px', paddingRight: '5px', display: 'flex', justifyContent: 'space-between', width: '250px' }}>
                 <Box>
                   <Link underline="hover" color="inherit" component={RouterLink} to={`/albums/${album.id}`}>

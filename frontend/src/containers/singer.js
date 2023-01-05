@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { Box, Link, Paper, Stack, Typography, Rating, Chip, Divider, Avatar, IconButton, TextField, Button } from '@mui/material';
+import { Box, Link, Paper, Stack, Typography, Rating, Chip, Divider, Avatar, IconButton, TextField, Button, ButtonBase } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Link as RouterLink, useParams } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { Container } from '@mui/system';
 import { Bard as Bar } from '../components/chartBar.js';
 
@@ -63,6 +63,8 @@ const Singer = () => {
   const [scores, setScores] = useState([]);
   const [scoresBar, setScoresBar] = useState([]);
   const [albums, setAlbums] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getSingerData(singerId);
@@ -125,7 +127,9 @@ const Singer = () => {
             }
           }}>
             {albums.map(album => (<StyledPaper>
-              <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+              <ButtonBase onClick={() => { navigate(`/albums/${album.id}`) }}>
+                <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+              </ButtonBase>
               <Box sx={{ height: '50px', paddingTop: '10px' }}>
                 <Link underline="hover" color="inherit" component={RouterLink} to={`/albums/${album.id}`}>
                   <Typography variant='h5'>

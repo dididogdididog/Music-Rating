@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { Box, Link, Paper, Stack, Typography, Rating } from '@mui/material';
+import { Box, Link, Paper, Stack, Typography, Rating, ButtonBase } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -67,6 +67,7 @@ const MainPage = () => {
     flexDirection: 'column',
     alignItems: 'flex-start',
   })
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -76,7 +77,9 @@ const MainPage = () => {
             <Typography variant='h3' fontWeight="bold">熱門新專</Typography>
           </Box>
           {hotNewAlbums.map(x => (<StyledPaper>
-            <Box component="img" src={x.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            <ButtonBase onClick={() => { navigate(`/albums/${x.id}`) }}>
+              <Box component="img" src={x.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            </ButtonBase>
             <Box sx={{ paddingTop: '10px', paddingLeft: '5px', paddingRight: '5px', display: 'flex', justifyContent: 'space-between', width: '250px' }}>
               <Box>
                 <Link underline="hover" color="inherit" component={RouterLink} to={`/albums/${x.id}`}>
@@ -104,7 +107,9 @@ const MainPage = () => {
             <Typography variant='h3' fontWeight="bold">年度熱門專輯</Typography>
           </Box>
           {hotAlbumsOfTheYear.map(x => (<StyledPaper>
-            <Box component="img" src={x.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            <ButtonBase onClick={() => { navigate(`/albums/${x.id}`) }}>
+              <Box component="img" src={x.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            </ButtonBase>
             <Box sx={{ paddingTop: '10px', paddingLeft: '5px', paddingRight: '5px', display: 'flex', justifyContent: 'space-between', width: '250px' }}>
               <Box>
                 <Link underline="hover" color="inherit" component={RouterLink} to={`/albums/${x.id}`}>

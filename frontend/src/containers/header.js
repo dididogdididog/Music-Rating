@@ -58,7 +58,7 @@ export default function Header() {
         :
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ padding: '10px' }}>
-            <Button variant="outlined">
+            <Button variant="outlined" onClick={goHome}>
               Home
             </Button>
           </Box>

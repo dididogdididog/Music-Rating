@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
-import { Box, Link, Paper, Stack, Typography, Rating, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
+import { Box, Link, Paper, Stack, Typography, Rating, InputLabel, MenuItem, FormControl, Select, ButtonBase } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 //import BasicSelect from '../components/basicSelect.js';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
-import db from '../db.js';
 
 const AllAlbumsOfTheYear = () => {
   const darkTheme = createTheme({
@@ -70,6 +69,8 @@ const AllAlbumsOfTheYear = () => {
     getAllAlbum();
   }, [item])
 
+  const navigate = useNavigate();
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -99,7 +100,9 @@ const AllAlbumsOfTheYear = () => {
             </Box>
           </Box>
           {allAlbums.map(album => (<StyledPaper>
-            <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            <ButtonBase onClick={() => { navigate(`/albums/${album.id}`) }}>
+              <Box component="img" src={album.img} sx={{ width: '250px', height: '250px', borderRadius: "5px", cursor: 'pointer', '&: hover': { opacity: 0.8 } }}></Box>
+            </ButtonBase>
             <Box sx={{ paddingTop: '10px', paddingLeft: '5px', paddingRight: '5px', display: 'flex', justifyContent: 'space-between', width: '250px' }}>
               <Box>
                 <Link underline="hover" color="inherit" component={RouterLink} to={`/albums/${album.id}`}>
