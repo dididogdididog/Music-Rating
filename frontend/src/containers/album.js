@@ -112,7 +112,7 @@ const Album = () => {
 
   useEffect(() => {
     getAlbumData(albumId);
-  }, [albumId]);
+  }, [albumId, userName]);
 
   const inputRef = useRef();
 
