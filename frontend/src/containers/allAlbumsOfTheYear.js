@@ -48,9 +48,12 @@ const AllAlbumsOfTheYear = () => {
     return 0.5;
   }
 
-  const instance = axios.create({
-    baseURL: 'http://localhost:4000/api'
-  })
+  const API_ROOT =
+    process.env.NODE_ENV === "production"
+      ? "/api"
+      : "http://localhost:4000/api";
+
+  const instance = axios.create({ baseURL: API_ROOT });
 
   const [item, setItem] = useState("熱門");
   const [allAlbums, setAllAlbums] = useState([]);

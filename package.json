@@ -4,5 +4,10 @@
   "main": "index.js",
   "repository": "https://github.com/dididogdididog/Music-Rating.git",
   "author": "dididogdididog <81434389+dididogdididog@users.noreply.github.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "install:prod": "cd frontend && yarn install --freeze-lockfile && cd ../backend && yarn install --freeze-lockfile",
+    "build": "cd frontend && yarn build",
+    "deploy": "cd backend && yarn deploy"
+  }
 }
